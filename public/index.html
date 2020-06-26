@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+</head>
+<body>
+    <div>
+
+        <form onsubmit="distance(event)">
+            
+            <p> longitude</p>
+            <input name='lon' type="text" placeholder="lon" />
+            <p> latitude</p>
+            <input name='lat' type="text" placeholder="lat" />
+            <br></br>
+            <input type="submit" value="calculate"">
+        </form>
+
+    </div>
+</body>
+<script>
+    function distance(e){
+        e.preventDefault();
+        let distance = {lon:e.target.lon.value, lat:e.target.lat.value}
+        console.log(distance);
+        fetch('http://localhost:3000/distance', {
+            method: 'POST',
+
+            body: JSON.stringify({distance}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+</script>
+</html>
