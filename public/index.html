@@ -11,10 +11,10 @@
 
         <form onsubmit="distance(event)">
             
-            <p> longitude</p>
-            <input name='lon' type="text" placeholder="lon" />
-            <p> latitude</p>
-            <input name='lat' type="text" placeholder="lat" />
+            <p> origin</p>
+            <input name='origin' type="text" placeholder="origin" />
+            <p> destination</p>
+            <input name='destination' type="text" placeholder="destination" />
             <br></br>
             <input type="submit" value="calculate"">
         </form>
@@ -24,7 +24,7 @@
 <script>
     function distance(e){
         e.preventDefault();
-        let distance = {lon:e.target.lon.value, lat:e.target.lat.value}
+        let distance = {origin:e.target.origin.value, destination:e.target.destination.value}
         console.log(distance);
         fetch('http://localhost:3000/distance', {
             method: 'POST',
