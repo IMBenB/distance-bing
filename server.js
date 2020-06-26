@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-
+let distance = '';
 let origin = '';
 let destination = '';
 let originGPS = ''
@@ -49,7 +49,11 @@ app.post('/distance', (req, res) => {
                         .then(resAfter => {
                             console.log(originGPS);
 
-                            console.log(resAfter.resourceSets[0].resources[0].results[0].travelDistance)
+                            console.log(resAfter.resourceSets[0].resources[0].results[0].travelDistance);
+                            distance = resAfter.resourceSets[0].resources[0].results[0].travelDistance;
+                            res.send({distance});
+
+
                         });
 
                 });

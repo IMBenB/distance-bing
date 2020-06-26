@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Document</title>
 </head>
+
 <body>
     <div>
 
         <form onsubmit="distance(event)">
-            
+
             <p> origin</p>
             <input name='origin' type="text" placeholder="origin" />
             <p> destination</p>
             <input name='destination' type="text" placeholder="destination" />
             <br></br>
+
+            <div id="distance"></div>
             <input type="submit" value="calculate"">
         </form>
+        
 
     </div>
 </body>
 <script>
-    function distance(e){
+    function distance(e) {
         e.preventDefault();
-        let distance = {origin:e.target.origin.value, destination:e.target.destination.value}
+        let distance = { origin: e.target.origin.value, destination: e.target.destination.value }
         console.log(distance);
         fetch('http://localhost:3000/distance', {
             method: 'POST',
 
-            body: JSON.stringify({distance}),
+            body: JSON.stringify({ distance }),
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
+        }).then(res => res.json())
+            .then(json => {
+                console.log(json);
+                document.getElementById('distance').innerHTML = ` ${json.distance}`;
+            });
     }
 </script>
 </html>
